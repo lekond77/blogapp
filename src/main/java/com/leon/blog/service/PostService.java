@@ -15,13 +15,17 @@ public class PostService implements PostInterface{
 	@Autowired
 	private PostRepository postRepository;
 	
+	@Autowired
+	private CounterService counterService;
+	
 	@Override
-	public Optional<Post> getPost(String id) {
-		return postRepository.findById(id);
+	public Optional<Post> getPost(String code) {
+		return postRepository.findByCode(code);
 	}
 
 	@Override
 	public Post createPost(Post post) {	
+		post.setCode(this.counterService.getNextSequenceId());
 		return postRepository.insert(post);
 	}
 
@@ -42,12 +46,12 @@ public class PostService implements PostInterface{
 		
 		if (updatedPost != null) {
 
-			if (post.getName() != null) {
-				updatedPost.setName(post.getName());
+			if (post.getTitle() != null) {
+				updatedPost.setTitle(post.getTitle());
 			}
 
-			if (post.getContent() != null) {
-				updatedPost.setContent(post.getContent());
+			if (post.getDescription() != null) {
+				updatedPost.setContent(post.getDescription());
 			}
 			return postRepository.save(updatedPost);
 		}

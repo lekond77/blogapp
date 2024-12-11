@@ -3,38 +3,59 @@ package com.leon.blog.model;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-
-@Document(collection ="posts")
+@Document(collection = "posts")
 public class Post {
 
 	@Id
 	private String id;
-	private String name;
+
+    @Indexed(unique = true)
+	private String code;
+
+	private String title;
+
 	@Field("contenu")
-	private String content;
+	private String description;
 	private Date date;
-	
-	public String getName() {
-		return name;
+
+	public String getCode() {
+		return code;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setCode(String code) {
+		this.code = code;
 	}
-	public String getContent() {
-		return content;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public void setContent(String content) {
-		this.content = content;
+
+	public String getDescription() {
+		return description;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setContent(String description) {
+		this.description = description;
+	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
 
 }
