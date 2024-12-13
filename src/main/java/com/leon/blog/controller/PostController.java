@@ -45,9 +45,9 @@ public class PostController {
 		postInterface.deletePost(id);
 	}
 
-	@PutMapping("/post/{id}")
-	public Post updatePost(@PathVariable final String id, @RequestBody Post post) {
+	@PutMapping("/post/{code}")
+	public Post updatePost(@PathVariable final String code, @RequestBody Post post) {
 	
-		return postInterface.updatePost(id, post);
+		return postInterface.updatePost(code, post);
 	}
 }

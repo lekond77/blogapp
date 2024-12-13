@@ -30,8 +30,8 @@ public class PostService implements PostInterface{
 	}
 
 	@Override
-	public void deletePost(String id) {
-		postRepository.deleteById(id);
+	public void deletePost(String code) {
+		postRepository.deleteByCode(code);
 	}
 
 	@Override
@@ -40,9 +40,9 @@ public class PostService implements PostInterface{
 	}
 
 	@Override
-	public Post updatePost(String id, Post post) {
+	public Post updatePost(String code, Post post) {
 		
-		Post updatedPost = postRepository.findById(id).orElse(null);
+		Post updatedPost = postRepository.findByCode(code).orElse(null);
 		
 		if (updatedPost != null) {
 
