@@ -1,6 +1,7 @@
 package com.leon.blog.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -21,6 +22,8 @@ public class Post {
 	@Field("contenu")
 	private String description;
 	private Date date;
+	
+	private List<ContentBlock> contentBlock;
 
 	public String getCode() {
 		return code;
@@ -58,4 +61,13 @@ public class Post {
 		this.date = date;
 	}
 
+	public List<ContentBlock> getContentBlock() {
+		return contentBlock;
+	}
+
+	public void setContentBlock(List<ContentBlock> contentBlocks) {
+		this.contentBlock = contentBlocks;
+	}
+
+	
 }

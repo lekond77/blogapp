@@ -11,4 +11,5 @@ import com.leon.blog.model.Post;
 public interface PostRepository extends MongoRepository<Post, String>{
 	
 	Optional<Post> findByCode(String code);
+	void deleteByCode(String code);
 }
