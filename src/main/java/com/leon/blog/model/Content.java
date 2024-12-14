@@ -1,5 +1,7 @@
 package com.leon.blog.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.leon.blog.enumeration.ContentType;
 
 public class Content {

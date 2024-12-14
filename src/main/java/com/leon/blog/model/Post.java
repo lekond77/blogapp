@@ -19,7 +19,7 @@ public class Post {
 
 	private String title;
 
-	@Field("contenu")
+	//@Field("contenu")
 	private String description;
 	private Date date;
 	

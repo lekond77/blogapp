@@ -8,7 +8,6 @@ public class ContentBlock {
 	
 	private String title;
 	
-	@Field("contents")
 	private List<Content> contents;
 
 	public String getTitle() {
@@ -23,8 +22,8 @@ public class ContentBlock {
 		return contents;
 	}
 
-	public void setContents(List<Content> contens) {
-		this.contents = contens;
+	public void setContents(List<Content> contents) {
+		this.contents = contents;
 	}
 	
 	
