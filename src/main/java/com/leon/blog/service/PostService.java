@@ -53,6 +53,10 @@ public class PostService implements PostInterface{
 			if (post.getDescription() != null) {
 				updatedPost.setContent(post.getDescription());
 			}
+			
+			if(post.getContentBlock() != null) {
+				updatedPost.setContentBlock(post.getContentBlock());
+			}
 			return postRepository.save(updatedPost);
 		}
 		return post;
