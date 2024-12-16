@@ -15,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Service
-public class FileStorageService {
+public class FileService {
 
 	private String location = "src/main/resources/posts";
 	private final Path rootLocation;
 	
-	public FileStorageService() {
+	public FileService() {
 
 		if (location.trim().length() == 0) {
 			throw new RuntimeException("File upload location can not be Empty.");
