@@ -6,13 +6,13 @@ import com.leon.blog.model.Post;
 
 public interface PostInterface {
 
-	public Optional<Post> getPost(String id);
+	public Optional<Post> getPost(String code);
 	
 	public Post createPost(Post post);
 	
-	public void deletePost(String id);
+	public void deletePost(String code);
 
 	public Iterable<Post> getPosts();
 	
-	public Post updatePost(String id, Post post);
+	public Post updatePost(String code, Post post);
 }
