@@ -1,13 +1,17 @@
 package com.leon.blog.service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.leon.blog.interfaces.LightPost;
+import com.leon.blog.interfaces.PostInterface;
+import com.leon.blog.model.Comment;
 import com.leon.blog.model.Post;
 import com.leon.blog.repository.PostRepository;
-import com.leon.blog.serviceInterface.PostInterface;
 
 @Service
 public class PostService implements PostInterface{
@@ -35,8 +39,8 @@ public class PostService implements PostInterface{
 	}
 
 	@Override
-	public Iterable<Post> getPosts() {
-		return postRepository.findAll();
+	public Iterable<LightPost> getPosts() {
+		return postRepository.findByOrderByDateDesc();
 	}
 
 	@Override
@@ -60,6 +64,23 @@ public class PostService implements PostInterface{
 			return postRepository.save(updatedPost);
 		}
 		return post;
+	}
+
+	@Override
+	public Comment addCommentToPost(String code, Comment comment) {
+		
+		Post updatedPost = postRepository.findByCode(code).orElse(null);
+		
+		if(updatedPost != null) {
+			comment.setDate(new Date());
+			
+			updatedPost.getComments().add(comment);
+			postRepository.save(updatedPost);
+			
+			return comment;
+		}
+		return null;
+		
 	}
 
 }

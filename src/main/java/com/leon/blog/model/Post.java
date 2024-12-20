@@ -1,5 +1,6 @@
 package com.leon.blog.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class Post {
 	private Date date;
 	
 	private List<ContentBlock> contentBlock;
+	
+	private List<Comment> comments = new ArrayList<>();
 
 	public String getCode() {
 		return code;
@@ -67,6 +70,14 @@ public class Post {
 
 	public void setContentBlock(List<ContentBlock> contentBlocks) {
 		this.contentBlock = contentBlocks;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	
