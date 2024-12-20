@@ -14,17 +14,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leon.blog.enumeration.ContentType;
+import com.leon.blog.interfaces.LightPost;
+import com.leon.blog.interfaces.PostInterface;
+import com.leon.blog.model.Comment;
 import com.leon.blog.model.Content;
 import com.leon.blog.model.ContentBlock;
 import com.leon.blog.model.Post;
 import com.leon.blog.service.FileService;
-import com.leon.blog.serviceInterface.PostInterface;
 
 @RestController
 public class PostController {
@@ -36,7 +39,7 @@ public class PostController {
 	FileService fileService;
 
 	@GetMapping("/posts")
-	public Iterable<Post> getPosts() {
+	public Iterable<LightPost> getPosts() {
 
 		return postInterface.getPosts();
 	}
@@ -82,6 +85,14 @@ public class PostController {
 		}
 
 		return postInterface.updatePost(code, post);
+	}
+	
+	@PutMapping("/post/comment/{code}")
+	public Comment addCommentToPost(@PathVariable String code, @RequestBody Comment comment) {
+		if(comment != null) {
+			return postInterface.addCommentToPost(code, comment);
+		}
+		return null;
 	}
 
 	@GetMapping("/files/{fileName:.+}")
